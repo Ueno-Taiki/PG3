@@ -1,52 +1,25 @@
 #include <Novice.h>
+#include <GameManeger.h>
 
 const char kWindowTitle[] = "LE2D_01_ウエノ_タイキ";
 
-// Windowsアプリでのエントリーポイント(main関数)
+// Windowsアプリでのmain関数
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	// ライブラリの初期化
 	Novice::Initialize(kWindowTitle, 1280, 720);
 
-	// キー入力結果を受け取る箱
-	char keys[256] = {0};
-	char preKeys[256] = {0};
+	//GameManegerクラスのインスタンスを作成する
+	GameManeger* gameManeger = new GameManeger();
 
-	// ウィンドウの×ボタンが押されるまでループ
-	while (Novice::ProcessMessage() == 0) {
-		// フレームの開始
-		Novice::BeginFrame();
-
-		// キー入力を受け取る
-		memcpy(preKeys, keys, 256);
-		Novice::GetHitKeyStateAll(keys);
-
-		///
-		/// ↓更新処理ここから
-		///
-
-		///
-		/// ↑更新処理ここまで
-		///
-
-		///
-		/// ↓描画処理ここから
-		///
-
-		///
-		/// ↑描画処理ここまで
-		///
-
-		// フレームの終了
-		Novice::EndFrame();
-
-		// ESCキーが押されたらループを抜ける
-		if (preKeys[DIK_ESCAPE] == 0 && keys[DIK_ESCAPE] != 0) {
-			break;
-		}
-	}
+	//GameManegerクラスからメンバ関数Runを呼び出す
+	gameManeger->Run();
 
 	// ライブラリの終了
 	Novice::Finalize();
+
+	//GameManegerを解放
+	delete gameManeger;
+
 	return 0;
 }
