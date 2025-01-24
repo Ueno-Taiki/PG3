@@ -1,19 +1,27 @@
 #include <Novice.h>
+#include "Scene.h"
 
-const char kWindowTitle[] = "LE2D_01_ウエノ_タイキ";
+const char kWindowTitle[] = "PG3コマンドパターン";
+
+const int kWindowWidth = 1280; // ウィンドウの横幅
+const int kWindowHeight = 720; // ウィンドウの縦幅
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	// ライブラリの初期化
-	Novice::Initialize(kWindowTitle, 1280, 720);
+	Novice::Initialize(kWindowTitle, kWindowWidth, kWindowHeight);
 
 	// キー入力結果を受け取る箱
-	char keys[256] = {0};
-	char preKeys[256] = {0};
+	char keys[256] = { 0 };
+	char preKeys[256] = { 0 };
+
+	Scene* scene = new Scene();
+	scene->Init();
 
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
+		
 		// フレームの開始
 		Novice::BeginFrame();
 
@@ -25,6 +33,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		/// ↓更新処理ここから
 		///
 
+		scene->Update();
+
 		///
 		/// ↑更新処理ここまで
 		///
@@ -33,10 +43,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		/// ↓描画処理ここから
 		///
 
+		scene->Draw();
+
 		///
 		/// ↑描画処理ここまで
 		///
-
+		
 		// フレームの終了
 		Novice::EndFrame();
 
