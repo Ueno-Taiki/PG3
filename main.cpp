@@ -1,16 +1,13 @@
 #include <Novice.h>
 #include "Scene.h"
 
-const char kWindowTitle[] = "PG3コマンドパターン";
-
-const int kWindowWidth = 1280; // ウィンドウの横幅
-const int kWindowHeight = 720; // ウィンドウの縦幅
+const char kWindowTitle[] = "LE2D_01_ウエノ_タイキ";
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	// ライブラリの初期化
-	Novice::Initialize(kWindowTitle, kWindowWidth, kWindowHeight);
+	Novice::Initialize(kWindowTitle, 1280, 720);
 
 	// キー入力結果を受け取る箱
 	char keys[256] = { 0 };
